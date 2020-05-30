@@ -1,7 +1,7 @@
-import React from 'react';
-import './NotFound.scss';
+import React from "react";
+import "./NotFound.scss";
 
-function NotFound() {
+const NotFound = () => {
   return (
     <div className="contact-page">
       <div className="route-not-found">
@@ -9,6 +9,6 @@ function NotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default NotFound;
