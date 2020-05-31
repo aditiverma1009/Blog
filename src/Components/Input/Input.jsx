@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../App/App';
 
 const Input = ({ type, onKeyDown, onChange, name, placeholder }, ref) => {
-    const [contextValue, setcontextValue] = useState('');
-
+    const contextValue = useContext(MyContext);
     return (
         <>
-            <MyContext.Consumer>
-                {randomValue => {
-                    setcontextValue(randomValue);
-                    return null;
-                }}
-            </MyContext.Consumer>
             <div style={{ color: 'grey', fontSize: '10px' }}>
                 ({contextValue})
             </div>
