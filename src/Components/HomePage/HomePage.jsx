@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Proptypes from 'prop-types';
+import Input from '../Input/Input';
 import './HomePage.scss';
 
 const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
@@ -45,7 +46,7 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
                             }}
                         >
                             Post Title:
-                            <input
+                            <Input
                                 ref={titleInputRef}
                                 onChange={event => setTitle(event.target.value)}
                                 type="text"
@@ -62,7 +63,7 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
                                 onKeyDown={onSecondKeyDown}
                             />
                             ImageURL:
-                            <input
+                            <Input
                                 ref={imageInputRef}
                                 onChange={event =>
                                     setImageURL(event.target.value)
