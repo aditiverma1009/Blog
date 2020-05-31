@@ -7,10 +7,38 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
     const [desc, setDesc] = useState('');
     const [imageURL, setImageURL] = useState(blogImage);
     const titleInputRef = useRef(null);
+    const textareaInputRef = useRef(null);
+    const imageInputRef = useRef(null);
+    const submitRef = useRef(null);
 
     useEffect(() => {
         titleInputRef.current.focus();
-    }, [titleInputRef]);
+    }, []);
+
+    const onFirstKeyDown = e => {
+        if (e.key === 'tab') {
+            textareaInputRef.current.focus();
+        }
+    };
+
+    const onSecondKeyDown = e => {
+        if (e.key === 'tab') {
+            imageInputRef.current.focus();
+        }
+    };
+
+    const onLastKeyDown = e => {
+        if (e.key === 'tab') {
+            submitRef.current.focus();
+        }
+    };
+
+    const clearFields = () => {
+        titleInputRef.current.value = null;
+        textareaInputRef.current.value = null;
+        imageInputRef.current.value = null;
+    };
+
     return (
         <>
             <div className="blog-name">Blog Name</div>
@@ -29,23 +57,31 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
                                 type="text"
                                 name="title"
                                 placeholder="title"
+                                onKeyDown={onFirstKeyDown}
                             />
                             Description:
                             <textarea
+                                ref={textareaInputRef}
                                 onChange={event => setDesc(event.target.value)}
                                 name="description"
                                 placeholder="description"
+                                onKeyDown={onSecondKeyDown}
                             />
                             ImageURL:
                             <input
+                                ref={imageInputRef}
                                 onChange={event =>
                                     setImageURL(event.target.value)
                                 }
                                 type="text"
                                 name="imageurl"
                                 placeholder="imageURL"
+                                onKeyDown={onLastKeyDown}
                             />
                             <input
+                                ref={submitRef}
+                                onClick={clearFields}
+                                onKeyDown={clearFields}
                                 className="submit"
                                 type="submit"
                                 value="Submit"
