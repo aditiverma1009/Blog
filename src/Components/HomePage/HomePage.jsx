@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import Proptypes from 'prop-types';
-import './HomePage.scss';
+import React, { useState } from "react";
+import Proptypes from "prop-types";
+import "./HomePage.scss";
 
-function HomePage(props) {
-  const { blogList, blogImage, onFormSubmit } = props;
-
-
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   const [imageURL, setImageURL] = useState(blogImage);
 
   return (
@@ -16,13 +13,29 @@ function HomePage(props) {
       <div className="body">
         <div className="bloglist">
           <div className="add-blog">
-            <form onSubmit={(event) => onFormSubmit(event, { title, desc, imageURL })}>
-                Post Title:
-              <input onChange={(event) => setTitle(event.target.value)} type="text" name="title" placeholder="title" />
-                Description:
-              <textarea onChange={(event) => setDesc(event.target.value)} name="description" placeholder="description" />
-                ImageURL:
-              <input onChange={(event) => setImageURL(event.target.value)} type="text" name="imageurl" placeholder="imageURL" />
+            <form
+              onSubmit={event => onFormSubmit(event, { title, desc, imageURL })}
+            >
+              Post Title:
+              <input
+                onChange={event => setTitle(event.target.value)}
+                type="text"
+                name="title"
+                placeholder="title"
+              />
+              Description:
+              <textarea
+                onChange={event => setDesc(event.target.value)}
+                name="description"
+                placeholder="description"
+              />
+              ImageURL:
+              <input
+                onChange={event => setImageURL(event.target.value)}
+                type="text"
+                name="imageurl"
+                placeholder="imageURL"
+              />
               <input className="submit" type="submit" value="Submit" />
             </form>
           </div>
@@ -31,10 +44,7 @@ function HomePage(props) {
         <div className="side-bar">
           <div className="about-me">
             <p>About me</p>
-            <img
-              src={blogImage}
-              alt="github"
-            />
+            <img src={blogImage} alt="github" />
             <p>About me content</p>
           </div>
           <div className="follow-me">
@@ -67,21 +77,23 @@ function HomePage(props) {
       </div>
     </>
   );
-}
+};
 
 HomePage.propTypes = {
-  blogList: Proptypes.arrayOf(Proptypes.shape({
-    title: Proptypes.string,
-    imageUrl: Proptypes.string,
-    imageAlt: Proptypes.string,
-    content: Proptypes.string,
-  })),
+  blogList: Proptypes.arrayOf(
+    Proptypes.shape({
+      title: Proptypes.string,
+      imageUrl: Proptypes.string,
+      imageAlt: Proptypes.string,
+      content: Proptypes.string
+    })
+  ),
   blogImage: Proptypes.string.isRequired,
-  onFormSubmit: Proptypes.func.isRequired,
+  onFormSubmit: Proptypes.func.isRequired
 };
 
 HomePage.defaultProps = {
-  blogList: [],
+  blogList: []
 };
 
 export default HomePage;

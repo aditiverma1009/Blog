@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
-import blogImage from '../../assets/rectangle.png';
-import BlogCard from '../BlogCard/BlogCard';
-import HomePage from '../HomePage/HomePage';
-import './App.scss';
+import React, { useState } from "react";
+import blogImage from "../../assets/rectangle.png";
+import BlogCard from "../BlogCard/BlogCard";
+import HomePage from "../HomePage/HomePage";
+import "./App.scss";
 
-function App() {
+const App = () => {
   const [allBlogs, setAllBlogs] = useState([]);
 
   const onFormSubmit = (event, content) => {
     const { title, desc, imageURL } = content;
     event.preventDefault();
-    setAllBlogs([...allBlogs, {
-      title,
-      imageURL,
-      imageAlt: title,
-      content: desc,
-    }]);
+    setAllBlogs([
+      ...allBlogs,
+      {
+        title,
+        imageURL,
+        imageAlt: title,
+        content: desc
+      }
+    ]);
   };
 
-  const deleteBlog = (id) => {
-    const formattedBlog = allBlogs.filter((item, index) => (index !== id));
+  const deleteBlog = id => {
+    const formattedBlog = allBlogs.filter((item, index) => index !== id);
     setAllBlogs(formattedBlog);
   };
 
   const blogList = allBlogs.map((eachBlog, index) => (
-    <BlogCard
-      details={eachBlog}
-      id={index}
-      deleteBlog={(id) => deleteBlog(id)}
-    />
+    <BlogCard details={eachBlog} id={index} deleteBlog={id => deleteBlog(id)} />
   ));
   return (
     <div className="app">
@@ -39,6 +38,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;
