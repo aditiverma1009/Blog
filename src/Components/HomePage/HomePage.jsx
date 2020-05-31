@@ -33,12 +33,6 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
         }
     };
 
-    const clearFields = () => {
-        titleInputRef.current.value = null;
-        textareaInputRef.current.value = null;
-        imageInputRef.current.value = null;
-    };
-
     return (
         <>
             <div className="blog-name">Blog Name</div>
@@ -46,9 +40,9 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
                 <div className="bloglist">
                     <div className="add-blog">
                         <form
-                            onSubmit={event =>
-                                onFormSubmit(event, { title, desc, imageURL })
-                            }
+                            onSubmit={event => {
+                                onFormSubmit(event, { title, desc, imageURL });
+                            }}
                         >
                             Post Title:
                             <input
@@ -80,8 +74,6 @@ const HomePage = ({ blogList, blogImage, onFormSubmit }) => {
                             />
                             <input
                                 ref={submitRef}
-                                onClick={clearFields}
-                                onKeyDown={clearFields}
                                 className="submit"
                                 type="submit"
                                 value="Submit"
