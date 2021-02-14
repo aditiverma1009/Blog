@@ -11,3 +11,5 @@ Demo for basic hooks:
 - useState
 - useEffect
 - useRef
+- useMemo
+- contextAPI/ useContext
